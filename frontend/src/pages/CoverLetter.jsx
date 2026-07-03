@@ -118,7 +118,7 @@ export default function CoverLetter() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 p-3 sm:flex-row sm:items-center sm:justify-end">
+        <div className="flex flex-col gap-3 p-3 sm:flex-row sm:items-center sm:justify">
           
           <button
             type="button"
