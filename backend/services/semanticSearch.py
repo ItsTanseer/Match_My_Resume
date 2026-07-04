@@ -6,6 +6,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from pydantic import BaseModel, Field
 from langchain_core.prompts import PromptTemplate
 import numpy as np
+
 import asyncio
 load_dotenv()
 api_key = os.getenv("OPEN_ROUTER_API_KEY")
@@ -23,7 +24,16 @@ class JDAnalisys(BaseModel):
 
 
 
-import numpy as np
+embedding_model = None
+
+def get_embedding_model():
+    global embedding_model
+
+    if embedding_model is None:
+        embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+
+    return embedding_model
+
 
 def normalize_score(raw_cosine_score: float) -> float:
     lower_bound = 0.15 # Minimum threshold )
@@ -69,6 +79,8 @@ async def generateSemanticScore(resumeSkills:list[str], jdSkills:list[str],resum
     print(responsibilities.responsibilities)
     # print(type(responsibilities.responsibilities))
     # print(type(responsibilities.responsibilities[0]))
+
+    model = get_embedding_model()
     resumeSkillEmbeddings =  model.encode(resumeSkills)
     jdSkillsEmbeddings =   model.encode(jdSkills)
     responsibilitiesEmbeddings = model.encode(responsibilities.responsibilities)
