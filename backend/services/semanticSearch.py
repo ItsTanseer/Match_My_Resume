@@ -46,7 +46,6 @@ def get_best_match_score(scores_array) -> float:
     best_score = scores_array.max()
     return normalize_score(best_score)
 
-model = SentenceTransformer("all-MiniLM-L6-v2")
 promptProjects = PromptTemplate(
     template="""Extract the short summary of each project, and short summaries of each experience from the projects section and experience section of the resume respectively. Resume- {resume}.
     Node- Summary of each project should be maximum 3 lines,
