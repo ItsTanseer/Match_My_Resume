@@ -1,7 +1,6 @@
 import os
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
-from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from pydantic import BaseModel, Field
 from langchain_core.prompts import PromptTemplate
